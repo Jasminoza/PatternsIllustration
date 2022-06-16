@@ -11,7 +11,7 @@ public class BossNotifier extends Notifier{
         System.out.println(message());
     }
 
-    private String message(){
+    protected String message(){
         return "Dear boss, your manager has a new high priority order.";
     }
 }

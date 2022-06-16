@@ -8,4 +8,6 @@ public abstract class Notifier {
     }
 
     public abstract void sendMessages(OrderPriority orderPriority);
+
+    protected abstract String message();
 }

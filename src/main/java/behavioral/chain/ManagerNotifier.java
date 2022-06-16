@@ -16,7 +16,7 @@ public class ManagerNotifier extends Notifier{
         }
     }
 
-    private String message() {
+    protected String message() {
         return "Dear manager, your worker has a new regular order.";
     }
 }

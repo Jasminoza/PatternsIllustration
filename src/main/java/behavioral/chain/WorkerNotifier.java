@@ -14,7 +14,7 @@ public class WorkerNotifier extends Notifier{
         }
     }
 
-    private String message() {
+    protected String message() {
         return "Dear worker, you have a new order.";
     }
 }
