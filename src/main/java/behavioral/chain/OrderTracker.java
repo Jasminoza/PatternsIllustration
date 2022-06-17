@@ -2,28 +2,32 @@ package behavioral.chain;
 
 public class OrderTracker {
     public static void main(String[] args) {
-        Notifier workerNotifier = new WorkerNotifier(OrderPriority.LOW);
-        Notifier managerNotifier = new ManagerNotifier(OrderPriority.NORMAL);
-        Notifier bossNotifier = new BossNotifier(OrderPriority.HIGH);
+        Notifier workerNotifier = new WorkerNotifier(OrderPriority.NORMAL);
+        Notifier managerNotifier = new ManagerNotifier(OrderPriority.HIGH);
+        Notifier bossNotifier = new BossNotifier(OrderPriority.TOP);
 
-        workerNotifier.sendMessages(OrderPriority.LOW);
-        System.out.println();
-        workerNotifier.sendMessages(OrderPriority.NORMAL);
-        System.out.println();
-        workerNotifier.sendMessages(OrderPriority.HIGH);
-        System.out.println("==========================================================\n");
+        workerNotifier.setNextNotifier(managerNotifier);
+        managerNotifier.setNextNotifier(bossNotifier);
 
-        managerNotifier.sendMessages(OrderPriority.LOW);
+        workerNotifier.sendMessages("New order has been received.", OrderPriority.NORMAL);
         System.out.println();
-        managerNotifier.sendMessages(OrderPriority.NORMAL);
+        workerNotifier.sendMessages("New order with high priority has been received.", OrderPriority.HIGH);
         System.out.println();
-        managerNotifier.sendMessages(OrderPriority.HIGH);
-        System.out.println("==========================================================\n");
+        workerNotifier.sendMessages("NEW TOP PRIORITY ORDER HAS BEEN RECEIVED.", OrderPriority.TOP);
+        System.out.println("==========================================================");
 
-        bossNotifier.sendMessages(OrderPriority.LOW);
+        managerNotifier.sendMessages("New order has been received.", OrderPriority.NORMAL);
         System.out.println();
-        bossNotifier.sendMessages(OrderPriority.NORMAL);
+        managerNotifier.sendMessages("New order with high priority has been received.", OrderPriority.HIGH);
         System.out.println();
-        bossNotifier.sendMessages(OrderPriority.HIGH);
+        managerNotifier.sendMessages("NEW TOP PRIORITY ORDER HAS BEEN RECEIVED.", OrderPriority.TOP);
+        System.out.println("==========================================================");
+
+        bossNotifier.sendMessages("New order has been received.", OrderPriority.NORMAL);
+        System.out.println();
+        bossNotifier.sendMessages("New order with high priority has been received.", OrderPriority.HIGH);
+        System.out.println();
+        bossNotifier.sendMessages("NEW TOP PRIORITY ORDER HAS BEEN RECEIVED.", OrderPriority.TOP);
+        System.out.println("==========================================================");
     }
 }

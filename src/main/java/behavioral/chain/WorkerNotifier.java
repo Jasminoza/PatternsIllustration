@@ -1,20 +1,24 @@
 package behavioral.chain;
 
-public class WorkerNotifier extends Notifier{
+public class WorkerNotifier extends Notifier {
     private Notifier nextNotifier;
+
     public WorkerNotifier(OrderPriority orderPriority) {
         super(orderPriority);
     }
+
     @Override
-    public void sendMessages(OrderPriority orderPriority) {
-        System.out.println(message());
-        if (orderPriority != OrderPriority.LOW) {
-            nextNotifier = new ManagerNotifier(orderPriority);
-            nextNotifier.sendMessages(orderPriority);
-        }
+    public void setNextNotifier(Notifier nextNotifier) {
+        this.nextNotifier = nextNotifier;
     }
 
-    protected String message() {
-        return "Dear worker, you have a new order.";
+    @Override
+    public void sendMessages(String message, OrderPriority orderPriority) {
+        System.out.println(message);
+        if (nextNotifier != null) {
+            if (orderPriority != OrderPriority.NORMAL) {
+                nextNotifier.sendMessages(message, orderPriority);
+            }
+        }
     }
 }

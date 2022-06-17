@@ -1,17 +1,19 @@
 package behavioral.chain;
 
 public class BossNotifier extends Notifier{
-
+    private Notifier nextNotifier;
     public BossNotifier(OrderPriority orderPriority) {
         super(orderPriority);
     }
 
     @Override
-    public void sendMessages(OrderPriority orderPriority) {
-        System.out.println(message());
+    public void setNextNotifier(Notifier nextNotifier) {
+        this.nextNotifier = nextNotifier;
     }
 
-    protected String message(){
-        return "Dear boss, your manager has a new high priority order.";
+    @Override
+    public void sendMessages(String message, OrderPriority orderPriority) {
+        System.out.println(message);
     }
+
 }
