@@ -1,13 +1,23 @@
 package behavioral.chain;
 
 public abstract class Notifier {
-    private OrderPriority orderPriority;
+    private int orderPriority;
     private Notifier nextNotifier;
 
-    public Notifier(OrderPriority orderPriority) {
+    public Notifier(int orderPriority) {
         this.orderPriority = orderPriority;
     }
-    public abstract void setNextNotifier(Notifier nextNotifier);
-    public abstract void sendMessages(String message, OrderPriority orderPriority);
+    public void setNextNotifier(Notifier nextNotifier){
+        this.nextNotifier = nextNotifier;
+    }
+    public void sendMessages(String message, int orderPriority) {
+        if (orderPriority >= this.orderPriority) {
+            write(message);
+        }
+        if (nextNotifier != null) {
+            nextNotifier.sendMessages(message, orderPriority);
+        }
+    }
 
+    public abstract void write(String message);
 }

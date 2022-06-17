@@ -9,25 +9,23 @@ public class OrderTracker {
         workerNotifier.setNextNotifier(managerNotifier);
         managerNotifier.setNextNotifier(bossNotifier);
 
+        System.out.println("======================================================================");
         workerNotifier.sendMessages("New order has been received.", OrderPriority.NORMAL);
         System.out.println();
         workerNotifier.sendMessages("New order with high priority has been received.", OrderPriority.HIGH);
         System.out.println();
         workerNotifier.sendMessages("NEW TOP PRIORITY ORDER HAS BEEN RECEIVED.", OrderPriority.TOP);
-        System.out.println("==========================================================");
+        System.out.println("======================================================================");
 
         managerNotifier.sendMessages("New order has been received.", OrderPriority.NORMAL);
-        System.out.println();
         managerNotifier.sendMessages("New order with high priority has been received.", OrderPriority.HIGH);
         System.out.println();
         managerNotifier.sendMessages("NEW TOP PRIORITY ORDER HAS BEEN RECEIVED.", OrderPriority.TOP);
-        System.out.println("==========================================================");
+        System.out.println("======================================================================");
 
         bossNotifier.sendMessages("New order has been received.", OrderPriority.NORMAL);
-        System.out.println();
         bossNotifier.sendMessages("New order with high priority has been received.", OrderPriority.HIGH);
-        System.out.println();
         bossNotifier.sendMessages("NEW TOP PRIORITY ORDER HAS BEEN RECEIVED.", OrderPriority.TOP);
-        System.out.println("==========================================================");
+        System.out.println("======================================================================");
     }
 }

@@ -1,7 +1,7 @@
 package behavioral.chain;
 
-public enum OrderPriority {
-    NORMAL,
-    HIGH,
-    TOP
+public class OrderPriority {
+    public final static int NORMAL = 1;
+    public final static int HIGH = 2;
+    public final static int TOP = 3;
 }
